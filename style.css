@@ -177,7 +177,7 @@ label {
 button {
   cursor: pointer;
   height: 50px;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 25px;
   font-family: Oxanium, sans-serif;
   color: white;
