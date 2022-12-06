@@ -69,6 +69,22 @@ function createEquations() {
   }
   shuffle(equationsArray);
   console.log('equations array', equationsArray)
+  equationsToDOM();
+}
+
+// Add Equations to DOM
+function equationsToDOM() {
+  equationsArray.forEach((equation) => {
+    // item
+    const item = document.createElement('div');
+    item.classList.add('item');
+    // equation text
+    const equationText = document.createElement('h1');
+    equationText.textContent = equation.value;
+    // append
+    item.appendChild(equationText);
+    itemContainer.appendChild(item);
+  });
 }
 
 // Dynamically adding correct/incorrect equations
