@@ -30,13 +30,43 @@ let equationObject = {};
 const wrongFormat = [];
 
 // Time
+let timer;
+let timePlayed = 0;
+let baseTime = 0;
+let penaltyTime = 0;
+let finalTime = 0;
+let finalTimeDisplay = '0,0s';
 
 // Scroll
 let valueY= 0;
 
+// Stop timer, process results, go to score page
+function checkTime() {
+  // console.log(timePlayed);
+  if (playerGuessArray.length == questionAmount) {
+    // console.log('player guess array:', playerGuessArray)
+    clearInterval(timer);
+  }
+}
+
+// Add a tenth of a seconf to timePlayed
+function addTime() {
+  timePlayed += 0.1;
+  checkTime();
+}
+
+// Start timer when game page is clicked
+function startTimer() {
+  // reset times
+  timePlayed = 0;
+  penaltyTime = 0;
+  finalTime = 0;
+  timer = setInterval(addTime, 100);
+  gamePage.removeEventListener('click', startTimer);
+}
+
 // Scroll, Store user selection in playerGuessArray
 function select(guessedTrue) {
-  console.log('player guess array:', playerGuessArray)
   // scroll 80 pixels
   valueY += 80;
   itemContainer.scroll(0, valueY);
@@ -59,10 +89,10 @@ function getRandomInt(max) {
 function createEquations() {
   // Randomly choose how many correct equations there should be
   const correctEquations = getRandomInt(questionAmount);
-  console.log('correct equations', correctEquations);
+  // console.log('correct equations', correctEquations);
   // Set amount of wrong equations
   const wrongEquations = questionAmount - correctEquations;
-  console.log('incorrect equations', wrongEquations);
+  // console.log('incorrect equations', wrongEquations);
   // Loop through, multiply random numbers up to 9, push to array
   for (let i = 0; i < correctEquations; i++) {
     firstNumber = getRandomInt(9);
@@ -181,3 +211,4 @@ startForm.addEventListener('click', () => {
 
 // Event Listeners
 startForm.addEventListener('submit', selectQuestionAmount);
+gamePage.addEventListener('click', startTimer);
