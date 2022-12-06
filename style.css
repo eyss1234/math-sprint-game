@@ -130,6 +130,7 @@ label {
   height: 552px;
   overflow-y: scroll;
   position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   -ms-overflow-style: none;
 }
 
