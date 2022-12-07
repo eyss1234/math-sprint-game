@@ -40,6 +40,12 @@ let finalTimeDisplay = '0,0s';
 // Scroll
 let valueY= 0;
 
+// Show Score Page
+function showScorePage() {
+  gamePage.hidden = true;
+  scorePage.hidden = false;
+}
+
 // Format and Display Time in Dom
 function scoresToDOM() {
   finalTimeDisplay = finalTime.toFixed(1);
@@ -215,7 +221,7 @@ function getRadioValue() {
 function selectQuestionAmount(event) {
   event.preventDefault();
   questionAmount = getRadioValue();
-  console.log('question amount:', questionAmount);
+  //console.log('question amount:', questionAmount);
   if (questionAmount) {
     showCountdown();
   } 
