@@ -40,8 +40,23 @@ let finalTimeDisplay = '0,0s';
 // Scroll
 let valueY= 0;
 
+// Reset game
+function playAgain() {
+  gamePage.addEventListener('click', startTimer);
+  scorePage.hidden = true;
+  splashPage.hidden = false;
+  equationsArray = [];
+  playerGuessArray = [];
+  valueY = 0;
+  playAgainBtn.hidden = true;
+}
+
 // Show Score Page
 function showScorePage() {
+  // show play again button after 1 second
+  setTimeout(() => {
+    playAgainBtn.hidden = false;
+  }, 1000);
   gamePage.hidden = true;
   scorePage.hidden = false;
 }
@@ -54,6 +69,8 @@ function scoresToDOM() {
   baseTimeEl.textContent = `Base Time: ${baseTime}`;
   penaltyTimeEl.textContent = `Penalty: +${penaltyTime}`;
   finalTimeEl.textContent = `${finalTimeDisplay}s`;
+  // scrolll to top, go to score page
+  itemContainer.scrollTo({ top: 0, behavior:'instant'});
   showScorePage();
 }
 
@@ -241,3 +258,4 @@ startForm.addEventListener('click', () => {
 // Event Listeners
 startForm.addEventListener('submit', selectQuestionAmount);
 gamePage.addEventListener('click', startTimer);
+
