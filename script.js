@@ -36,7 +36,15 @@ let timePlayed = 0;
 let baseTime = 0;
 let penaltyTime = 0;
 let finalTime = 0;
-let finalTimeDisplay = '0,0s';
+let finalTimeDisplay = '0,0';
+
+// Refresh Splash Page Best Scores
+function bestScorestoDOM() {
+  bestScores.forEach((bestScore, index) => {
+    const bestScoreEl = bestScore;
+    bestScoreEl.textContent = `${bestScoreArray[index].bestScore}`;
+  });
+}
 
 // Scroll
 let valueY= 0;
@@ -54,6 +62,7 @@ function getSavedBestScores() {
     ];
     localStorage.setItem('bestScores', JSON.stringify(bestScoreArray))
   }
+  bestScorestoDOM();
 }
 
 // Reset game
